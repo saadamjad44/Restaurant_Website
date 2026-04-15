@@ -2,6 +2,9 @@
 
 A beautiful, fully responsive restaurant website featuring online ordering, table reservations, photo gallery, and event booking capabilities.
 
+# Live at:
+https://cozykitchenwebsite.netlify.app/
+
 ## Overview
 
 The Cozy Kitchen is a complete restaurant website solution designed for casual dining establishments. It provides customers with an intuitive interface to browse menus, place orders, make reservations, and learn about special events - all from any device.
