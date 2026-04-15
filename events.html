@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Host your special events at The Cozy Kitchen. Private dining, catering, and event packages available.">
+  <title>Events - The Cozy Kitchen</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .events-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--surface);
+      padding: 6rem 0 3rem;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .events-header h1 {
+      color: var(--surface);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .events-header p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .event-type-card {
+      background-color: var(--surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-base);
+    }
+
+    .event-type-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .event-type-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .event-type-content {
+      padding: var(--spacing-lg);
+    }
+
+    .event-type-title {
+      font-family: var(--font-accent);
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .event-type-description {
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .event-type-features {
+      list-style: none;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .event-type-features li {
+      padding: 0.5rem 0;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .event-type-features li::before {
+      content: '✓';
+      color: var(--primary);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .package-card {
+      background-color: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+
+    .package-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .package-name {
+      font-family: var(--font-accent);
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .package-price {
+      font-size: 2rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--primary);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .package-price-note {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .package-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .package-features li {
+      padding: 0.5rem 0;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .package-features li:last-child {
+      border-bottom: none;
+    }
+
+    .event-inquiry-form {
+      background-color: var(--surface);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip to main content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">The Cozy Kitchen</a>
+
+      <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="navbar-menu">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="menu.html" class="navbar-link">Menu</a>
+        <a href="gallery.html" class="navbar-link">Gallery</a>
+        <a href="reservations.html" class="navbar-link">Reservations</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="contact.html" class="navbar-link">Contact</a>
+
+        <div class="navbar-cta">
+          <a href="order.html" class="btn btn-primary">Order Online</a>
+          <a href="reservations.html" class="btn btn-secondary">Reserve Table</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Events Header -->
+    <section class="events-header">
+      <div class="container">
+        <h1>Special Events</h1>
+        <p>Make your celebration memorable at The Cozy Kitchen</p>
+      </div>
+    </section>
+
+    <!-- Event Types -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Event Types We Host</h2>
+        <p class="section-subtitle">From intimate gatherings to large celebrations, we have the perfect space for your special occasion</p>
+
+        <div class="grid grid-2">
+          <div class="event-type-card reveal">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Private dining event" class="event-type-image" loading="lazy">
+            <div class="event-type-content">
+              <h3 class="event-type-title">Private Dining</h3>
+              <p class="event-type-description">Host an intimate dinner party in our private dining room with personalized service and custom menus.</p>
+              <ul class="event-type-features">
+                <li>Capacity: 12-30 guests</li>
+                <li>Private dining room</li>
+                <li>Customizable menu</li>
+                <li>Dedicated server</li>
+                <li>Audio/visual equipment available</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="event-type-card reveal">
+            <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80" alt="Catering service" class="event-type-image" loading="lazy">
+            <div class="event-type-content">
+              <h3 class="event-type-title">Catering Services</h3>
+              <p class="event-type-description">Bring The Cozy Kitchen experience to your location with our full-service catering.</p>
+              <ul class="event-type-features">
+                <li>Off-site catering available</li>
+                <li>Buffet or plated service</li>
+                <li>Professional staff</li>
+                <li>Setup and cleanup included</li>
+                <li>Dietary accommodations</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="event-type-card reveal">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80" alt="Birthday party celebration" class="event-type-image" loading="lazy">
+            <div class="event-type-content">
+              <h3 class="event-type-title">Birthday Parties</h3>
+              <p class="event-type-description">Celebrate another year with friends and family in our warm, inviting atmosphere.</p>
+              <ul class="event-type-features">
+                <li>All ages welcome</li>
+                <li>Customizable party packages</li>
+                <li>Birthday cake included</li>
+                <li>Decorations available</li>
+                <li>Special birthday menu options</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="event-type-card reveal">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80" alt="Corporate event" class="event-type-image" loading="lazy">
+            <div class="event-type-content">
+              <h3 class="event-type-title">Corporate Events</h3>
+              <p class="event-type-description">Perfect for team building, client dinners, and business meetings.</p>
+              <ul class="event-type-features">
+                <li>Professional atmosphere</li>
+                <li>Wi-Fi and presentation equipment</li>
+                <li>Flexible seating arrangements</li>
+                <li>Business lunch/dinner menus</li>
+                <li>Invoice billing available</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Packages -->
+    <section class="section" style="background-color: var(--background);">
+      <div class="container">
+        <h2 class="section-title">Event Packages</h2>
+        <p class="section-subtitle">Choose a package that fits your needs, or let us create a custom experience</p>
+
+        <div class="grid grid-3">
+          <div class="package-card reveal">
+            <h3 class="package-name">Intimate Gathering</h3>
+            <div class="package-price">$35</div>
+            <p class="package-price-note">per person</p>
+            <ul class="package-features">
+              <li>12-20 guests</li>
+              <li>3-course meal</li>
+              <li>Choice of 3 appetizers</li>
+              <li>Choice of 4 entrees</li>
+              <li>Dessert selection</li>
+              <li>Non-alcoholic beverages</li>
+              <li>2-hour venue rental</li>
+            </ul>
+            <a href="#inquiry-form" class="btn btn-primary">Inquire Now</a>
+          </div>
+
+          <div class="package-card reveal">
+            <h3 class="package-name">Celebration</h3>
+            <div class="package-price">$45</div>
+            <p class="package-price-note">per person</p>
+            <ul class="package-features">
+              <li>20-40 guests</li>
+              <li>4-course meal</li>
+              <li>Choice of 5 appetizers</li>
+              <li>Choice of 6 entrees</li>
+              <li>Dessert bar</li>
+              <li>Beverages included</li>
+              <li>3-hour venue rental</li>
+              <li>Basic decorations</li>
+            </ul>
+            <a href="#inquiry-form" class="btn btn-primary">Inquire Now</a>
+          </div>
+
+          <div class="package-card reveal">
+            <h3 class="package-name">Grand Event</h3>
+            <div class="package-price">$60</div>
+            <p class="package-price-note">per person</p>
+            <ul class="package-features">
+              <li>40-80 guests</li>
+              <li>5-course meal</li>
+              <li>Full appetizer selection</li>
+              <li>Full entree selection</li>
+              <li>Premium dessert bar</li>
+              <li>Full bar service</li>
+              <li>4-hour venue rental</li>
+              <li>Custom decorations</li>
+              <li>Dedicated event coordinator</li>
+            </ul>
+            <a href="#inquiry-form" class="btn btn-primary">Inquire Now</a>
+          </div>
+        </div>
+
+        <div class="text-center mt-xl">
+          <p style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">Need something different?</p>
+          <p><strong>We can create a custom package tailored to your specific needs and budget.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Inquiry Form -->
+    <section class="section" id="inquiry-form">
+      <div class="container">
+        <div class="event-inquiry-form">
+          <h2 style="margin-bottom: var(--spacing-lg); text-align: center;">Event Inquiry</h2>
+          <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">Fill out the form below and we'll get back to you within 24 hours to discuss your event.</p>
+
+          <form id="event-form" data-validate data-success-message="Thank you for your inquiry! We'll contact you within 24 hours to discuss your event.">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="event-type" class="form-label required">Event Type</label>
+                <select id="event-type" name="eventType" class="form-select" required aria-required="true">
+                  <option value="">Select event type</option>
+                  <option value="private-dining">Private Dining</option>
+                  <option value="catering">Catering Service</option>
+                  <option value="birthday">Birthday Party</option>
+                  <option value="corporate">Corporate Event</option>
+                  <option value="wedding">Wedding/Reception</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="event-date" class="form-label required">Preferred Date</label>
+                <input type="date" id="event-date" name="eventDate" class="form-input no-past-dates" required aria-required="true">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="guest-count" class="form-label required">Expected Guest Count</label>
+                <input type="number" id="guest-count" name="guestCount" class="form-input" min="1" max="200" required aria-required="true">
+              </div>
+
+              <div class="form-group">
+                <label for="budget" class="form-label">Budget Range</label>
+                <select id="budget" name="budget" class="form-select">
+                  <option value="">Select budget range</option>
+                  <option value="under-1000">Under $1,000</option>
+                  <option value="1000-2500">$1,000 - $2,500</option>
+                  <option value="2500-5000">$2,500 - $5,000</option>
+                  <option value="5000-10000">$5,000 - $10,000</option>
+                  <option value="over-10000">Over $10,000</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name" class="form-label required">Your Name</label>
+                <input type="text" id="contact-name" name="contactName" class="form-input" required aria-required="true">
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email" class="form-label required">Email</label>
+                <input type="email" id="contact-email" name="contactEmail" class="form-input" required aria-required="true">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-phone" class="form-label required">Phone</label>
+              <input type="tel" id="contact-phone" name="contactPhone" class="form-input" placeholder="+92 300 1234567" required aria-required="true">
+            </div>
+
+            <div class="form-group">
+              <label for="event-details" class="form-label">Event Details</label>
+              <textarea id="event-details" name="eventDetails" class="form-textarea" rows="5" placeholder="Tell us more about your event, any special requirements, dietary restrictions, or questions you have..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
+              Submit Inquiry
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional Info -->
+    <section class="section" style="background-color: var(--surface);">
+      <div class="container">
+        <div class="grid grid-2">
+          <div class="card reveal">
+            <h3>Why Choose Us for Your Event?</h3>
+            <ul style="list-style: disc; padding-left: var(--spacing-lg); margin-top: var(--spacing-md);">
+              <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);">Over 10 years of event hosting experience</li>
+              <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);">Flexible menu options to accommodate all dietary needs</li>
+              <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);">Professional, attentive staff dedicated to your event</li>
+              <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);">Beautiful, comfortable venue with warm atmosphere</li>
+              <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);">Competitive pricing with no hidden fees</li>
+            </ul>
+          </div>
+
+          <div class="card reveal">
+            <h3>Frequently Asked Questions</h3>
+            <div style="margin-top: var(--spacing-md);">
+              <p style="font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-xs);">How far in advance should I book?</p>
+              <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">We recommend booking 4-6 weeks in advance, especially for weekends and holidays.</p>
+
+              <p style="font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-xs);">Do you require a deposit?</p>
+              <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Yes, a 25% deposit is required to secure your date, with the balance due 7 days before the event.</p>
+
+              <p style="font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-xs);">Can I bring my own decorations?</p>
+              <p style="color: var(--text-secondary);">Absolutely! We welcome your personal touches. We can also provide basic decorations or recommend vendors.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>The Cozy Kitchen</h3>
+          <p>Your neighborhood destination for delicious, home-style cooking in a warm and inviting atmosphere.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reservations.html">Reservations</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Main Boulevard Gulberg<br>Lahore, Punjab 54000<br>Pakistan</p>
+          <p>Phone: +92 300 1234567<br>Email: info@cozykitchen.com</p>
+          <p style="margin-top: var(--spacing-sm);"><strong>Hours:</strong><br>Mon-Thu: 11 AM - 9 PM<br>Fri-Sat: 11 AM - 10 PM<br>Sun: 10 AM - 8 PM</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Cozy Kitchen. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

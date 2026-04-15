@@ -1,0 +1,263 @@
+/* Responsive Styles */
+
+/* Mobile First - Base styles are for mobile */
+
+/* Tablet: 768px and up */
+@media (min-width: 768px) {
+  /* Typography adjustments */
+  body {
+    font-size: 1.0625rem;
+  }
+
+  /* Hero adjustments */
+  .hero {
+    min-height: 700px;
+  }
+
+  .hero-cta {
+    flex-wrap: nowrap;
+  }
+
+  /* Navigation */
+  .navbar .container {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  /* Sections */
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  /* Cards */
+  .card {
+    padding: var(--spacing-xl);
+  }
+
+  /* Menu items */
+  .menu-item-image {
+    height: 220px;
+  }
+
+  /* Forms */
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .form-row .form-group {
+    margin-bottom: 0;
+  }
+}
+
+/* Desktop: 1024px and up */
+@media (min-width: 1024px) {
+  /* Navigation - show full menu */
+  .navbar-menu {
+    position: static;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    padding: 0;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .navbar-link {
+    width: auto;
+    padding: 0.5rem;
+    border-bottom: none;
+  }
+
+  .navbar-cta {
+    flex-direction: row;
+    width: auto;
+    margin-top: 0;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 800px;
+  }
+
+  /* Sections */
+  .section {
+    padding: 6rem 2rem;
+  }
+
+  /* Menu items */
+  .menu-item-image {
+    height: 240px;
+  }
+
+  /* Hover effects for desktop */
+  .card:hover {
+    transform: translateY(-8px);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Feature cards in row */
+  .features-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Large Desktop: 1280px and up */
+@media (min-width: 1280px) {
+  .hero {
+    min-height: 900px;
+  }
+
+  .menu-item-image {
+    height: 260px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .navbar,
+  .footer,
+  .hero-scroll,
+  .scroll-top,
+  .btn,
+  .navbar-toggle {
+    display: none !important;
+  }
+
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  .hero {
+    height: auto;
+    min-height: auto;
+    page-break-after: always;
+  }
+
+  .section {
+    page-break-inside: avoid;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary: #8B4513;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --border: #666666;
+  }
+
+  .btn {
+    border-width: 3px;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-width: 3px;
+  }
+}
+
+/* Dark mode support (if user prefers) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #2C1810;
+    --surface: #3E2723;
+    --text-primary: #FFF8DC;
+    --text-secondary: #E0D5C7;
+    --border: #6D4C41;
+    --overlay: rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    background-color: #4E342E;
+    color: var(--text-primary);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll {
+    animation: none;
+  }
+
+  .spinner {
+    animation: none;
+    border-top-color: transparent;
+    border-right-color: var(--primary);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  .btn {
+    min-height: 48px;
+    padding: 1rem 2rem;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    min-height: 48px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .navbar-link {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Remove hover effects on touch devices */
+  .card:hover,
+  .btn:hover,
+  .menu-item:hover {
+    transform: none;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 374px) {
+  :root {
+    --container-padding: 0.75rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+  }
+
+  .navbar-logo {
+    font-size: 1.25rem;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: 500px;
+    height: auto;
+    padding: 8rem 0 4rem;
+  }
+
+  .navbar {
+    position: absolute;
+  }
+}

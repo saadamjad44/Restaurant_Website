@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Cozy Kitchen - Your neighborhood destination for delicious, home-style cooking in a warm and inviting atmosphere.">
+  <meta name="keywords" content="restaurant, casual dining, family restaurant, home-style cooking">
+  <title>The Cozy Kitchen - Where Every Meal Feels Like Home</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <!-- Skip to main content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">The Cozy Kitchen</a>
+
+      <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="navbar-menu">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="menu.html" class="navbar-link">Menu</a>
+        <a href="gallery.html" class="navbar-link">Gallery</a>
+        <a href="reservations.html" class="navbar-link">Reservations</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="contact.html" class="navbar-link">Contact</a>
+
+        <div class="navbar-cta">
+          <a href="order.html" class="btn btn-primary">Order Online</a>
+          <a href="reservations.html" class="btn btn-secondary">Reserve Table</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80" alt="Cozy restaurant interior" class="hero-background" loading="eager">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">The Cozy Kitchen</h1>
+        <p class="hero-subtitle">Where Every Meal Feels Like Home</p>
+        <div class="hero-cta">
+          <a href="order.html" class="btn btn-primary btn-large">Order Online</a>
+          <a href="reservations.html" class="btn btn-secondary btn-large">Reserve a Table</a>
+        </div>
+      </div>
+      <div class="hero-scroll" aria-hidden="true">
+        <span>↓</span>
+      </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="grid grid-2">
+          <div class="reveal">
+            <h2>Welcome to Our Kitchen</h2>
+            <p>Welcome to The Cozy Kitchen, your neighborhood destination for delicious, home-style cooking in a warm and inviting atmosphere. Since 2015, we've been serving families and friends with fresh, locally-sourced ingredients and recipes passed down through generations.</p>
+            <p>Whether you're joining us for a casual lunch, family dinner, or special celebration, we're here to make every meal memorable. Our commitment to quality, comfort, and community has made us a beloved gathering place for food lovers of all ages.</p>
+            <a href="menu.html" class="btn btn-primary mt-md">View Our Menu</a>
+          </div>
+          <div class="reveal">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Restaurant dining area" loading="lazy" style="border-radius: var(--radius-lg); width: 100%; height: auto;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Menu Items -->
+    <section class="section" style="background-color: var(--surface);">
+      <div class="container">
+        <h2 class="section-title">Featured Dishes</h2>
+        <p class="section-subtitle">Taste our most popular dishes, crafted with love and the finest ingredients</p>
+
+        <div class="grid grid-3">
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Classic Burger" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Classic Burger</h3>
+                <span class="menu-item-price">$14.99</span>
+              </div>
+              <p class="menu-item-description">Juicy beef patty with fresh lettuce, tomato, pickles, and our special sauce on a toasted brioche bun. Served with crispy fries.</p>
+              <div class="menu-item-tags">
+                <span class="menu-item-tag">Popular</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80" alt="Grilled Salmon" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Grilled Salmon</h3>
+                <span class="menu-item-price">$22.99</span>
+              </div>
+              <p class="menu-item-description">Fresh Atlantic salmon grilled to perfection, served with seasonal vegetables and lemon butter sauce.</p>
+              <div class="menu-item-tags">
+                <span class="menu-item-tag">Healthy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80" alt="Pasta Primavera" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Pasta Primavera</h3>
+                <span class="menu-item-price">$16.99</span>
+              </div>
+              <p class="menu-item-description">Fresh pasta tossed with seasonal vegetables in a light garlic and olive oil sauce. Topped with parmesan.</p>
+              <div class="menu-item-tags">
+                <span class="menu-item-tag">Vegetarian</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-xl">
+          <a href="menu.html" class="btn btn-primary btn-large">View Full Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Why Choose Us</h2>
+
+        <div class="grid grid-4">
+          <div class="feature-card reveal">
+            <div class="feature-icon">🥗</div>
+            <h3 class="feature-title">Fresh Ingredients</h3>
+            <p>We source locally and use only the freshest ingredients in every dish we prepare.</p>
+          </div>
+
+          <div class="feature-card reveal">
+            <div class="feature-icon">👨‍🍳</div>
+            <h3 class="feature-title">Family Recipes</h3>
+            <p>Our menu features time-tested recipes passed down through generations.</p>
+          </div>
+
+          <div class="feature-card reveal">
+            <div class="feature-icon">🏠</div>
+            <h3 class="feature-title">Cozy Atmosphere</h3>
+            <p>Enjoy your meal in our warm, welcoming space that feels just like home.</p>
+          </div>
+
+          <div class="feature-card reveal">
+            <div class="feature-icon">⚡</div>
+            <h3 class="feature-title">Fast Service</h3>
+            <p>Quick, friendly service without compromising on quality or attention to detail.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" style="background-color: var(--surface);">
+      <div class="container">
+        <h2 class="section-title">What Our Customers Say</h2>
+
+        <div class="grid grid-3">
+          <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"The best comfort food in town! The atmosphere is so welcoming and the staff treats you like family. We come here every week!"</p>
+            <p class="testimonial-author">- Sarah Johnson</p>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Amazing food and great prices. The burger is incredible and the portions are generous. Highly recommend for families!"</p>
+            <p class="testimonial-author">- Michael Chen</p>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"A hidden gem! The salmon is cooked perfectly every time and the service is outstanding. This is our go-to spot for date nights."</p>
+            <p class="testimonial-author">- Emily Rodriguez</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hours & Location -->
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-2">
+          <div class="card reveal">
+            <h2>Hours of Operation</h2>
+            <div style="margin-top: var(--spacing-md);">
+              <p><strong>Monday - Thursday:</strong> 11:00 AM - 9:00 PM</p>
+              <p><strong>Friday - Saturday:</strong> 11:00 AM - 10:00 PM</p>
+              <p><strong>Sunday:</strong> 10:00 AM - 8:00 PM</p>
+              <p style="margin-top: var(--spacing-sm); color: var(--primary);"><em>Brunch available Sundays 10 AM - 2 PM</em></p>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h2>Visit Us</h2>
+            <div style="margin-top: var(--spacing-md);">
+              <p><strong>Address:</strong><br>Main Boulevard Gulberg<br>Lahore, Punjab 54000<br>Pakistan</p>
+              <p style="margin-top: var(--spacing-sm);"><strong>Phone:</strong> +92 300 1234567</p>
+              <p><strong>Email:</strong> info@cozykitchen.com</p>
+              <a href="contact.html" class="btn btn-primary mt-md">Get Directions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="section" style="background-color: var(--primary); color: var(--surface);">
+      <div class="container">
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+          <h2 style="color: var(--surface);">Stay Updated</h2>
+          <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: var(--spacing-lg);">Subscribe to our newsletter for special offers, new menu items, and upcoming events.</p>
+
+          <form id="newsletter-form" style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; justify-content: center;">
+            <input type="email" class="form-input" placeholder="Enter your email" required style="flex: 1; min-width: 250px;">
+            <button type="submit" class="btn btn-secondary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>The Cozy Kitchen</h3>
+          <p>Your neighborhood destination for delicious, home-style cooking in a warm and inviting atmosphere.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reservations.html">Reservations</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Main Boulevard Gulberg<br>Lahore, Punjab 54000<br>Pakistan</p>
+          <p>Phone: +92 300 1234567<br>Email: info@cozykitchen.com</p>
+          <p style="margin-top: var(--spacing-sm);"><strong>Hours:</strong><br>Mon-Thu: 11 AM - 9 PM<br>Fri-Sat: 11 AM - 10 PM<br>Sun: 10 AM - 8 PM</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Cozy Kitchen. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse our photo gallery showcasing delicious food, cozy atmosphere, and memorable moments at The Cozy Kitchen.">
+  <title>Gallery - The Cozy Kitchen</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .gallery-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--surface);
+      padding: 6rem 0 3rem;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .gallery-header h1 {
+      color: var(--surface);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .gallery-header p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .gallery-filters {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .gallery-filter {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--background);
+      color: var(--text-primary);
+      border-radius: var(--radius-full);
+      font-family: var(--font-accent);
+      font-weight: var(--font-weight-medium);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .gallery-filter:hover,
+    .gallery-filter.active {
+      background-color: var(--primary);
+      color: var(--surface);
+      border-color: var(--primary);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      aspect-ratio: 1;
+      background-color: var(--background);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      padding: var(--spacing-md);
+      color: var(--surface);
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    /* Lightbox styles */
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      z-index: var(--z-modal);
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: var(--radius-lg);
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--text-primary);
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      z-index: var(--z-modal);
+    }
+
+    .lightbox-prev {
+      left: var(--spacing-lg);
+    }
+
+    .lightbox-next {
+      right: var(--spacing-lg);
+    }
+
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      background-color: var(--primary);
+      color: var(--surface);
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: var(--spacing-lg);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: var(--surface);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-small);
+    }
+
+    @media (max-width: 767px) {
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: var(--spacing-md);
+      }
+
+      .lightbox-prev,
+      .lightbox-next {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+      }
+
+      .lightbox-prev {
+        left: var(--spacing-sm);
+      }
+
+      .lightbox-next {
+        right: var(--spacing-sm);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip to main content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">The Cozy Kitchen</a>
+
+      <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="navbar-menu">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="menu.html" class="navbar-link">Menu</a>
+        <a href="gallery.html" class="navbar-link">Gallery</a>
+        <a href="reservations.html" class="navbar-link">Reservations</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="contact.html" class="navbar-link">Contact</a>
+
+        <div class="navbar-cta">
+          <a href="order.html" class="btn btn-primary">Order Online</a>
+          <a href="reservations.html" class="btn btn-secondary">Reserve Table</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Gallery Header -->
+    <section class="gallery-header">
+      <div class="container">
+        <h1>Photo Gallery</h1>
+        <p>Explore our delicious dishes, cozy atmosphere, and memorable moments</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Gallery Filters -->
+        <div class="gallery-filters">
+          <button class="gallery-filter active" data-filter="all">All Photos</button>
+          <button class="gallery-filter" data-filter="food">Food</button>
+          <button class="gallery-filter" data-filter="interior">Interior</button>
+          <button class="gallery-filter" data-filter="events">Events</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid">
+          <!-- Food Photos -->
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View burger image">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Delicious burger with fries" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Classic Burger</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View salmon dish image">
+            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80" alt="Grilled salmon with vegetables" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Grilled Salmon</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View pasta image">
+            <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80" alt="Fresh pasta primavera" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Pasta Primavera</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View steak image">
+            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="Juicy steak with potatoes" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Steak & Potatoes</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View dessert image">
+            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&q=80" alt="Chocolate lava cake" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Chocolate Lava Cake</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View breakfast image">
+            <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80" alt="Breakfast platter" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Sunday Brunch</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View pizza image">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80" alt="Fresh pizza" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Wood-Fired Pizza</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View salad image">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" alt="Fresh salad" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Garden Fresh Salad</p>
+            </div>
+          </div>
+
+          <!-- Interior Photos -->
+          <div class="gallery-item" data-category="interior" tabindex="0" role="button" aria-label="View restaurant interior">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Cozy restaurant interior" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Main Dining Area</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="interior" tabindex="0" role="button" aria-label="View dining area">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Restaurant dining area" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Dining Space</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="interior" tabindex="0" role="button" aria-label="View bar area">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&q=80" alt="Restaurant bar area" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Bar Area</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="interior" tabindex="0" role="button" aria-label="View table setting">
+            <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="Elegant table setting" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Table Setting</p>
+            </div>
+          </div>
+
+          <!-- Events Photos -->
+          <div class="gallery-item" data-category="events" tabindex="0" role="button" aria-label="View birthday celebration">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="Birthday celebration" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Birthday Celebration</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="events" tabindex="0" role="button" aria-label="View family gathering">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&q=80" alt="Family gathering" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Family Gathering</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="events" tabindex="0" role="button" aria-label="View private dining">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Private dining event" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Private Dining</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="events" tabindex="0" role="button" aria-label="View special occasion">
+            <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&q=80" alt="Special occasion dinner" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Special Occasions</p>
+            </div>
+          </div>
+
+          <!-- More Food Photos -->
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View appetizer platter">
+            <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?w=600&q=80" alt="Appetizer platter" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Appetizer Platter</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View soup">
+            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80" alt="Homemade soup" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Soup of the Day</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View sandwich">
+            <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80" alt="Gourmet sandwich" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Gourmet Sandwich</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="food" tabindex="0" role="button" aria-label="View coffee and dessert">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Coffee and dessert" loading="lazy">
+            <div class="gallery-item-overlay">
+              <p>Coffee & Dessert</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>The Cozy Kitchen</h3>
+          <p>Your neighborhood destination for delicious, home-style cooking in a warm and inviting atmosphere.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reservations.html">Reservations</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Main Boulevard Gulberg<br>Lahore, Punjab 54000<br>Pakistan</p>
+          <p>Phone: +92 300 1234567<br>Email: info@cozykitchen.com</p>
+          <p style="margin-top: var(--spacing-sm);"><strong>Hours:</strong><br>Mon-Thu: 11 AM - 9 PM<br>Fri-Sat: 11 AM - 10 PM<br>Sun: 10 AM - 8 PM</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Cozy Kitchen. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

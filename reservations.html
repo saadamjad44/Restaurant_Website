@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reserve a table at The Cozy Kitchen. Book your dining experience online.">
+  <title>Reservations - The Cozy Kitchen</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .reservation-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--surface);
+      padding: 6rem 0 3rem;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .reservation-header h1 {
+      color: var(--surface);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .reservation-header p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .reservation-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .reservation-form {
+      background-color: var(--surface);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .reservation-policies {
+      background-color: var(--background);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-lg);
+      margin-top: var(--spacing-xl);
+    }
+
+    .reservation-policies h3 {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .reservation-policies ul {
+      list-style: disc;
+      padding-left: var(--spacing-lg);
+    }
+
+    .reservation-policies li {
+      margin-bottom: var(--spacing-sm);
+      color: var(--text-secondary);
+    }
+
+    .confirmation-message {
+      background-color: var(--surface);
+      padding: var(--spacing-2xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .confirmation-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--success);
+      color: var(--surface);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin: 0 auto var(--spacing-lg);
+    }
+
+    .confirmation-details {
+      background-color: var(--background);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      margin: var(--spacing-lg) 0;
+      text-align: left;
+    }
+
+    .confirmation-details p {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .confirmation-details strong {
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip to main content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">The Cozy Kitchen</a>
+
+      <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="navbar-menu">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="menu.html" class="navbar-link">Menu</a>
+        <a href="gallery.html" class="navbar-link">Gallery</a>
+        <a href="reservations.html" class="navbar-link">Reservations</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="contact.html" class="navbar-link">Contact</a>
+
+        <div class="navbar-cta">
+          <a href="order.html" class="btn btn-primary">Order Online</a>
+          <a href="reservations.html" class="btn btn-secondary">Reserve Table</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Reservation Header -->
+    <section class="reservation-header">
+      <div class="container">
+        <h1>Reserve a Table</h1>
+        <p>Book your dining experience at The Cozy Kitchen</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reservation-container">
+        <!-- Reservation Form -->
+        <div class="reservation-form" id="reservation-form-container">
+          <h2 style="margin-bottom: var(--spacing-lg);">Make a Reservation</h2>
+
+          <form id="reservation-form" data-validate data-success-message="Reservation submitted successfully! We'll send you a confirmation email shortly.">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="reservation-date" class="form-label required">Date</label>
+                <input
+                  type="date"
+                  id="reservation-date"
+                  name="date"
+                  class="form-input no-past-dates"
+                  required
+                  aria-required="true">
+              </div>
+
+              <div class="form-group">
+                <label for="reservation-time" class="form-label required">Time</label>
+                <select
+                  id="reservation-time"
+                  name="time"
+                  class="form-select"
+                  required
+                  aria-required="true">
+                  <option value="">Select a time</option>
+                  <!-- Time slots will be populated by JavaScript -->
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="party-size" class="form-label required">Party Size</label>
+              <select
+                id="party-size"
+                name="partySize"
+                class="form-select"
+                required
+                aria-required="true">
+                <option value="">Select party size</option>
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests</option>
+                <option value="7">7 Guests</option>
+                <option value="8">8 Guests</option>
+                <option value="9">9 Guests</option>
+                <option value="10">10 Guests</option>
+                <option value="11">11 Guests</option>
+                <option value="12">12 Guests</option>
+                <option value="12+">12+ Guests (Please call)</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name" class="form-label required">First Name</label>
+                <input
+                  type="text"
+                  id="first-name"
+                  name="firstName"
+                  class="form-input"
+                  required
+                  aria-required="true">
+              </div>
+
+              <div class="form-group">
+                <label for="last-name" class="form-label required">Last Name</label>
+                <input
+                  type="text"
+                  id="last-name"
+                  name="lastName"
+                  class="form-input"
+                  required
+                  aria-required="true">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email" class="form-label required">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  required
+                  aria-required="true">
+              </div>
+
+              <div class="form-group">
+                <label for="phone" class="form-label required">Phone</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="form-input"
+                  placeholder="+92 300 1234567"
+                  required
+                  aria-required="true">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="special-requests" class="form-label">Special Requests</label>
+              <textarea
+                id="special-requests"
+                name="specialRequests"
+                class="form-textarea"
+                placeholder="Any dietary restrictions, allergies, or special occasions we should know about?"
+                rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
+              Complete Reservation
+            </button>
+          </form>
+        </div>
+
+        <!-- Reservation Policies -->
+        <div class="reservation-policies">
+          <h3>Reservation Policies</h3>
+          <ul>
+            <li><strong>Cancellation Policy:</strong> Please cancel at least 2 hours before your reservation time. You can call us at +92 300 1234567 or email info@cozykitchen.com</li>
+            <li><strong>Late Arrivals:</strong> We'll hold your table for 15 minutes past your reservation time. After that, your table may be released to waiting guests.</li>
+            <li><strong>Large Parties:</strong> For parties of 12 or more, please call us directly at +92 300 1234567 to make arrangements.</li>
+            <li><strong>Special Occasions:</strong> Celebrating something special? Let us know in the special requests field and we'll do our best to make it memorable!</li>
+            <li><strong>Confirmation:</strong> You'll receive a confirmation email within a few minutes. If you don't receive it, please check your spam folder or contact us.</li>
+          </ul>
+        </div>
+
+        <!-- Contact for Questions -->
+        <div class="text-center mt-xl">
+          <p style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">Have questions about your reservation?</p>
+          <p><strong>Call us:</strong> +92 300 1234567</p>
+          <p><strong>Email:</strong> info@cozykitchen.com</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>The Cozy Kitchen</h3>
+          <p>Your neighborhood destination for delicious, home-style cooking in a warm and inviting atmosphere.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reservations.html">Reservations</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Main Boulevard Gulberg<br>Lahore, Punjab 54000<br>Pakistan</p>
+          <p>Phone: +92 300 1234567<br>Email: info@cozykitchen.com</p>
+          <p style="margin-top: var(--spacing-sm);"><strong>Hours:</strong><br>Mon-Thu: 11 AM - 9 PM<br>Fri-Sat: 11 AM - 10 PM<br>Sun: 10 AM - 8 PM</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Cozy Kitchen. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Custom reservation form handling
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('reservation-form');
+      const formContainer = document.getElementById('reservation-form-container');
+
+      // Override the form submission to show custom confirmation
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Validate form
+        const formValidator = new FormValidator('#reservation-form');
+        const inputs = form.querySelectorAll('.form-input, .form-select, .form-textarea');
+        let isValid = true;
+
+        inputs.forEach(input => {
+          if (!formValidator.validateField(input)) {
+            isValid = false;
+          }
+        });
+
+        if (!isValid) {
+          const firstError = form.querySelector('.error');
+          if (firstError) firstError.focus();
+          return;
+        }
+
+        // Get form data
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        // Show loading
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span class="spinner"></span> Processing...';
+
+        try {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 1500));
+
+          // Show confirmation
+          showReservationConfirmation(data);
+
+        } catch (error) {
+          showNotification('An error occurred. Please try again.', 'error');
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+        }
+      });
+    });
+
+    function showReservationConfirmation(data) {
+      const confirmationNumber = generateId().toUpperCase().substring(0, 8);
+      const formattedDate = formatDate(data.date);
+      const formattedTime = data.time;
+
+      const confirmationHTML = `
+        <div class="confirmation-message animate-scale-in">
+          <div class="confirmation-icon">✓</div>
+          <h2>Reservation Confirmed!</h2>
+          <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+            Thank you for choosing The Cozy Kitchen. We look forward to serving you!
+          </p>
+
+          <div class="confirmation-details">
+            <p><strong>Confirmation Number:</strong> ${confirmationNumber}</p>
+            <p><strong>Date:</strong> ${formattedDate}</p>
+            <p><strong>Time:</strong> ${formattedTime}</p>
+            <p><strong>Party Size:</strong> ${data.partySize} ${data.partySize === '1' ? 'Guest' : 'Guests'}</p>
+            <p><strong>Name:</strong> ${sanitizeHTML(data.firstName)} ${sanitizeHTML(data.lastName)}</p>
+            <p><strong>Email:</strong> ${sanitizeHTML(data.email)}</p>
+            <p><strong>Phone:</strong> ${sanitizeHTML(data.phone)}</p>
+            ${data.specialRequests ? `<p><strong>Special Requests:</strong> ${sanitizeHTML(data.specialRequests)}</p>` : ''}
+          </div>
+
+          <div class="alert alert-success">
+            <p>A confirmation email has been sent to ${sanitizeHTML(data.email)}</p>
+          </div>
+
+          <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap; margin-top: var(--spacing-lg);">
+            <a href="menu.html" class="btn btn-secondary">View Menu</a>
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+          </div>
+        </div>
+      `;
+
+      const formContainer = document.getElementById('reservation-form-container');
+      formContainer.innerHTML = confirmationHTML;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

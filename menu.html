@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse our delicious menu featuring appetizers, main courses, desserts, and beverages at The Cozy Kitchen.">
+  <title>Menu - The Cozy Kitchen</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    /* Menu-specific styles */
+    .menu-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--surface);
+      padding: 6rem 0 3rem;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .menu-header h1 {
+      color: var(--surface);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .menu-header p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .menu-categories {
+      position: sticky;
+      top: 60px;
+      background-color: var(--surface);
+      box-shadow: var(--shadow-md);
+      z-index: var(--z-sticky);
+      padding: var(--spacing-md) 0;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .menu-categories-list {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .menu-category-btn {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--background);
+      color: var(--text-primary);
+      border-radius: var(--radius-full);
+      font-family: var(--font-accent);
+      font-weight: var(--font-weight-medium);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .menu-category-btn:hover,
+    .menu-category-btn.active {
+      background-color: var(--primary);
+      color: var(--surface);
+    }
+
+    .menu-section {
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .menu-section-title {
+      font-size: var(--font-size-h2);
+      margin-bottom: var(--spacing-xl);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 3px solid var(--primary);
+    }
+
+    .menu-download {
+      text-align: center;
+      padding: var(--spacing-xl);
+      background-color: var(--background);
+      border-radius: var(--radius-lg);
+      margin-top: var(--spacing-2xl);
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip to main content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">The Cozy Kitchen</a>
+
+      <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="navbar-menu">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="menu.html" class="navbar-link">Menu</a>
+        <a href="gallery.html" class="navbar-link">Gallery</a>
+        <a href="reservations.html" class="navbar-link">Reservations</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="contact.html" class="navbar-link">Contact</a>
+
+        <div class="navbar-cta">
+          <a href="order.html" class="btn btn-primary">Order Online</a>
+          <a href="reservations.html" class="btn btn-secondary">Reserve Table</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Menu Header -->
+    <section class="menu-header">
+      <div class="container">
+        <h1>Our Menu</h1>
+        <p>Discover our delicious selection of home-style dishes made with fresh, locally-sourced ingredients</p>
+      </div>
+    </section>
+
+    <!-- Menu Categories Navigation -->
+    <div class="menu-categories">
+      <div class="container">
+        <nav class="menu-categories-list" aria-label="Menu categories">
+          <button class="menu-category-btn active" data-category="all">All Items</button>
+          <button class="menu-category-btn" data-category="appetizers">Appetizers</button>
+          <button class="menu-category-btn" data-category="mains">Main Courses</button>
+          <button class="menu-category-btn" data-category="desserts">Desserts</button>
+          <button class="menu-category-btn" data-category="beverages">Beverages</button>
+          <button class="menu-category-btn" data-category="kids">Kids Menu</button>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Appetizers -->
+      <section class="menu-section" id="appetizers" data-category="appetizers">
+        <h2 class="menu-section-title">Appetizers</h2>
+        <div class="grid grid-2">
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1604909052743-94e838986d24?w=600&q=80" alt="Crispy Calamari" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Crispy Calamari</h3>
+                <span class="menu-item-price">$12.99</span>
+              </div>
+              <p class="menu-item-description">Lightly breaded calamari rings served with marinara sauce and lemon wedges.</p>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?w=600&q=80" alt="Spinach Artichoke Dip" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Spinach & Artichoke Dip</h3>
+                <span class="menu-item-price">$10.99</span>
+              </div>
+              <p class="menu-item-description">Creamy blend of spinach, artichokes, and cheese. Served with tortilla chips.</p>
+              <div class="menu-item-tags">
+                <span class="menu-item-tag">Vegetarian</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=600&q=80" alt="Buffalo Wings" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Buffalo Wings (8pc)</h3>
+                <span class="menu-item-price">$11.99</span>
+              </div>
+              <p class="menu-item-description">Crispy chicken wings tossed in buffalo sauce. Served with celery and ranch dressing.</p>
+              <div class="menu-item-tags">
+                <span class="menu-item-tag">Spicy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=600&q=80" alt="Bruschetta Trio" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Bruschetta Trio</h3>
+                <span class="menu-item-price">$9.99</span>
+              </div>
+              <p class="menu-item-description">Three varieties of bruschetta on toasted baguette slices: classic tomato, mushroom, and olive tapenade.</p>
+              <div class="menu-item-tags">
+                <span class="menu-item-tag">Vegetarian</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Courses -->
+      <section class="menu-section" id="mains" data-category="mains">
+        <h2 class="menu-section-title">Main Courses</h2>
+        <div class="grid grid-2">
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Classic Burger" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Classic Burger & Fries</h3>
+                <span class="menu-item-price">$14.99</span>
+              </div>
+              <p class="menu-item-description">Juicy beef patty with lettuce, tomato, pickles, and our special sauce on a toasted brioche bun. Served with crispy fries.</p>
+              <div class="menu-item-tags">
+                <span class="menu-item-tag">Popular</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80" alt="Grilled Salmon" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Grilled Salmon with Vegetables</h3>
+                <span class="menu-item-price">$22.99</span>
+              </div>
+              <p class="menu-item-description">Fresh Atlantic salmon grilled to perfection, served with seasonal vegetables and lemon butter sauce.</p>
+              <div class="menu-item-tags">
+                <span class="menu-item-tag">Healthy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=600&q=80" alt="Chicken Parmesan" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Chicken Parmesan</h3>
+                <span class="menu-item-price">$18.99</span>
+              </div>
+              <p class="menu-item-description">Breaded chicken breast topped with marinara sauce and melted mozzarella. Served with spaghetti.</p>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80" alt="Pasta Primavera" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Vegetarian Pasta Primavera</h3>
+                <span class="menu-item-price">$16.99</span>
+              </div>
+              <p class="menu-item-description">Fresh pasta tossed with seasonal vegetables in a light garlic and olive oil sauce. Topped with parmesan cheese.</p>
+              <div class="menu-item-tags">
+                <span class="menu-item-tag">Vegetarian</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="BBQ Ribs" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">BBQ Ribs (Half Rack)</h3>
+                <span class="menu-item-price">$19.99</span>
+              </div>
+              <p class="menu-item-description">Slow-cooked pork ribs glazed with our house BBQ sauce. Served with coleslaw and cornbread.</p>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="Steak and Potatoes" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Steak & Mashed Potatoes</h3>
+                <span class="menu-item-price">$26.99</span>
+              </div>
+              <p class="menu-item-description">8oz sirloin steak cooked to your liking, served with creamy mashed potatoes and seasonal vegetables.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Desserts -->
+      <section class="menu-section" id="desserts" data-category="desserts">
+        <h2 class="menu-section-title">Desserts</h2>
+        <div class="grid grid-4">
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=600&q=80" alt="Cheesecake" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">New York Cheesecake</h3>
+                <span class="menu-item-price">$7.99</span>
+              </div>
+              <p class="menu-item-description">Classic creamy cheesecake with graham cracker crust.</p>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&q=80" alt="Chocolate Lava Cake" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Chocolate Lava Cake</h3>
+                <span class="menu-item-price">$8.99</span>
+              </div>
+              <p class="menu-item-description">Warm chocolate cake with molten center, served with vanilla ice cream.</p>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1535920527002-b35e96722eb9?w=600&q=80" alt="Apple Pie" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Apple Pie à la Mode</h3>
+                <span class="menu-item-price">$7.99</span>
+              </div>
+              <p class="menu-item-description">Homemade apple pie served warm with vanilla ice cream.</p>
+            </div>
+          </div>
+
+          <div class="menu-item reveal">
+            <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600&q=80" alt="Tiramisu" class="menu-item-image" loading="lazy">
+            <div class="menu-item-content">
+              <div class="menu-item-header">
+                <h3 class="menu-item-name">Tiramisu</h3>
+                <span class="menu-item-price">$8.99</span>
+              </div>
+              <p class="menu-item-description">Classic Italian dessert with espresso-soaked ladyfingers and mascarpone.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Beverages -->
+      <section class="menu-section" id="beverages" data-category="beverages">
+        <h2 class="menu-section-title">Beverages</h2>
+        <div class="grid grid-4">
+          <div class="card reveal">
+            <h3>Soft Drinks</h3>
+            <p class="menu-item-price">$2.99</p>
+            <p class="menu-item-description">Coca-Cola, Sprite, Dr. Pepper, Root Beer</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Fresh Lemonade</h3>
+            <p class="menu-item-price">$3.99</p>
+            <p class="menu-item-description">Freshly squeezed lemonade</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Iced Tea</h3>
+            <p class="menu-item-price">$2.99</p>
+            <p class="menu-item-description">Sweet or unsweetened</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Coffee / Tea</h3>
+            <p class="menu-item-price">$2.49</p>
+            <p class="menu-item-description">Regular or decaf</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kids Menu -->
+      <section class="menu-section" id="kids" data-category="kids">
+        <h2 class="menu-section-title">Kids Menu</h2>
+        <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">All kids meals include a drink and choice of fries or fruit. For ages 12 and under.</p>
+        <div class="grid grid-3">
+          <div class="card reveal">
+            <h3>Kids Burger</h3>
+            <p class="menu-item-price">$7.99</p>
+            <p class="menu-item-description">Mini burger with cheese</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Chicken Tenders</h3>
+            <p class="menu-item-price">$7.99</p>
+            <p class="menu-item-description">Crispy chicken tenders (3pc)</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Mac & Cheese</h3>
+            <p class="menu-item-price">$6.99</p>
+            <p class="menu-item-description">Creamy macaroni and cheese</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Spaghetti</h3>
+            <p class="menu-item-price">$6.99</p>
+            <p class="menu-item-description">Spaghetti with marinara sauce</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Grilled Cheese</h3>
+            <p class="menu-item-price">$5.99</p>
+            <p class="menu-item-description">Classic grilled cheese sandwich</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Mini Pizza</h3>
+            <p class="menu-item-price">$7.99</p>
+            <p class="menu-item-description">Personal cheese or pepperoni pizza</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Download Menu -->
+      <div class="menu-download reveal">
+        <h2>Download Our Menu</h2>
+        <p style="margin-bottom: var(--spacing-md);">Take our menu with you! Download a PDF version to view anytime.</p>
+        <button class="btn btn-primary" onclick="alert('PDF download would be available here')">Download PDF Menu</button>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="section" style="background-color: var(--primary); color: var(--surface); margin-top: var(--spacing-3xl);">
+      <div class="container text-center">
+        <h2 style="color: var(--surface);">Ready to Order?</h2>
+        <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: var(--spacing-lg);">Order online for pickup or delivery, or reserve a table for dine-in.</p>
+        <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+          <a href="order.html" class="btn btn-secondary btn-large">Order Online</a>
+          <a href="reservations.html" class="btn btn-secondary btn-large">Reserve a Table</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>The Cozy Kitchen</h3>
+          <p>Your neighborhood destination for delicious, home-style cooking in a warm and inviting atmosphere.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reservations.html">Reservations</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Main Boulevard Gulberg<br>Lahore, Punjab 54000<br>Pakistan</p>
+          <p>Phone: +92 300 1234567<br>Email: info@cozykitchen.com</p>
+          <p style="margin-top: var(--spacing-sm);"><strong>Hours:</strong><br>Mon-Thu: 11 AM - 9 PM<br>Fri-Sat: 11 AM - 10 PM<br>Sun: 10 AM - 8 PM</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Cozy Kitchen. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Menu category filtering
+    document.addEventListener('DOMContentLoaded', () => {
+      const categoryButtons = document.querySelectorAll('.menu-category-btn');
+      const menuSections = document.querySelectorAll('.menu-section');
+
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const category = button.dataset.category;
+
+          // Update active button
+          categoryButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+
+          // Show/hide sections
+          menuSections.forEach(section => {
+            if (category === 'all' || section.dataset.category === category) {
+              section.style.display = 'block';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+
+          // Scroll to first visible section
+          if (category !== 'all') {
+            const firstVisible = document.querySelector(`.menu-section[data-category="${category}"]`);
+            if (firstVisible) {
+              firstVisible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

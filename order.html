@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Order online from The Cozy Kitchen for pickup or delivery. Browse our menu and place your order.">
+  <title>Order Online - The Cozy Kitchen</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .order-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--surface);
+      padding: 6rem 0 3rem;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .order-header h1 {
+      color: var(--surface);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .order-type-selector {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .order-type-btn {
+      padding: 1rem 2rem;
+      background-color: var(--surface);
+      color: var(--text-primary);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      font-family: var(--font-accent);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      min-width: 150px;
+    }
+
+    .order-type-btn.active {
+      background-color: var(--primary);
+      color: var(--surface);
+      border-color: var(--primary);
+    }
+
+    .order-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+    }
+
+    @media (min-width: 1024px) {
+      .order-layout {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .order-menu {
+      background-color: var(--surface);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+    }
+
+    .order-cart {
+      background-color: var(--surface);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 80px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+
+    .menu-category-tabs {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+      overflow-x: auto;
+      padding-bottom: var(--spacing-sm);
+    }
+
+    .menu-category-tab {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--background);
+      color: var(--text-primary);
+      border-radius: var(--radius-full);
+      font-family: var(--font-accent);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+    }
+
+    .menu-category-tab.active {
+      background-color: var(--primary);
+      color: var(--surface);
+    }
+
+    .order-menu-item {
+      display: flex;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .order-menu-item:last-child {
+      border-bottom: none;
+    }
+
+    .order-menu-item-image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      flex-shrink: 0;
+    }
+
+    .order-menu-item-info {
+      flex: 1;
+    }
+
+    .order-menu-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .order-menu-item-name {
+      font-family: var(--font-accent);
+      font-weight: var(--font-weight-semibold);
+      font-size: 1.125rem;
+    }
+
+    .order-menu-item-price {
+      font-weight: var(--font-weight-bold);
+      color: var(--primary);
+    }
+
+    .order-menu-item-description {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .cart-item {
+      display: flex;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-image {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-name {
+      font-weight: var(--font-weight-semibold);
+      font-size: 0.9375rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .cart-item-price {
+      color: var(--text-secondary);
+      font-size: var(--font-size-small);
+    }
+
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--background);
+      border-radius: var(--radius-md);
+      padding: 0.25rem;
+    }
+
+    .cart-item-quantity button {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--surface);
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-weight-bold);
+      transition: all var(--transition-fast);
+    }
+
+    .cart-item-quantity button:hover {
+      background-color: var(--primary);
+      color: var(--surface);
+    }
+
+    .quantity-value {
+      min-width: 20px;
+      text-align: center;
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .remove-from-cart {
+      color: var(--error);
+      font-size: 1.5rem;
+      padding: 0.25rem;
+      line-height: 1;
+    }
+
+    .cart-total {
+      margin-top: var(--spacing-md);
+      padding-top: var(--spacing-md);
+      border-top: 2px solid var(--border);
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .cart-total-final {
+      font-size: 1.25rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--primary);
+      margin-top: var(--spacing-sm);
+      padding-top: var(--spacing-sm);
+      border-top: 2px solid var(--border);
+    }
+
+    .cart-items {
+      margin-bottom: var(--spacing-md);
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    #delivery-section {
+      display: none;
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      background-color: var(--background);
+      border-radius: var(--radius-md);
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip to main content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">The Cozy Kitchen</a>
+
+      <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="navbar-menu">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="menu.html" class="navbar-link">Menu</a>
+        <a href="gallery.html" class="navbar-link">Gallery</a>
+        <a href="reservations.html" class="navbar-link">Reservations</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="contact.html" class="navbar-link">Contact</a>
+
+        <div class="navbar-cta">
+          <a href="order.html" class="btn btn-primary" style="position: relative;">
+            Order Online
+            <span class="cart-badge" style="display: none;">0</span>
+          </a>
+          <a href="reservations.html" class="btn btn-secondary">Reserve Table</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Order Header -->
+    <section class="order-header">
+      <div class="container">
+        <h1>Order Online</h1>
+        <p>Choose your items and we'll have them ready for you</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Order Type Selector -->
+        <div class="order-type-selector">
+          <button class="order-type-btn active" data-type="pickup">
+            🛍️ Pickup
+          </button>
+          <button class="order-type-btn" data-type="delivery">
+            🚗 Delivery
+          </button>
+        </div>
+
+        <!-- Delivery Address Section -->
+        <div id="delivery-section">
+          <h3 style="margin-bottom: var(--spacing-md);">Delivery Address</h3>
+          <div class="form-group">
+            <input type="text" class="form-input" placeholder="Enter your delivery address" id="delivery-address">
+          </div>
+          <p style="font-size: var(--font-size-small); color: var(--text-secondary);">Delivery fee: $4.99 | Estimated time: 45-60 minutes</p>
+        </div>
+
+        <!-- Order Layout -->
+        <div class="order-layout">
+          <!-- Menu Section -->
+          <div class="order-menu">
+            <h2 style="margin-bottom: var(--spacing-lg);">Browse Menu</h2>
+
+            <!-- Category Tabs -->
+            <div class="menu-category-tabs">
+              <button class="menu-category-tab active" data-category="all">All</button>
+              <button class="menu-category-tab" data-category="appetizers">Appetizers</button>
+              <button class="menu-category-tab" data-category="mains">Mains</button>
+              <button class="menu-category-tab" data-category="desserts">Desserts</button>
+              <button class="menu-category-tab" data-category="beverages">Beverages</button>
+            </div>
+
+            <!-- Menu Items -->
+            <div id="menu-items-container">
+              <!-- Appetizers -->
+              <div class="order-menu-item" data-category="appetizers">
+                <img src="https://images.unsplash.com/photo-1604909052743-94e838986d24?w=200&q=80" alt="Crispy Calamari" class="order-menu-item-image">
+                <div class="order-menu-item-info">
+                  <div class="order-menu-item-header">
+                    <h3 class="order-menu-item-name">Crispy Calamari</h3>
+                    <span class="order-menu-item-price">$12.99</span>
+                  </div>
+                  <p class="order-menu-item-description">Lightly breaded calamari rings served with marinara sauce.</p>
+                  <button class="btn btn-primary btn-sm add-to-cart"
+                    data-id="calamari"
+                    data-name="Crispy Calamari"
+                    data-price="12.99"
+                    data-image="https://images.unsplash.com/photo-1604909052743-94e838986d24?w=200&q=80">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <div class="order-menu-item" data-category="appetizers">
+                <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?w=200&q=80" alt="Spinach Artichoke Dip" class="order-menu-item-image">
+                <div class="order-menu-item-info">
+                  <div class="order-menu-item-header">
+                    <h3 class="order-menu-item-name">Spinach & Artichoke Dip</h3>
+                    <span class="order-menu-item-price">$10.99</span>
+                  </div>
+                  <p class="order-menu-item-description">Creamy blend of spinach, artichokes, and cheese with chips.</p>
+                  <button class="btn btn-primary btn-sm add-to-cart"
+                    data-id="spinach-dip"
+                    data-name="Spinach & Artichoke Dip"
+                    data-price="10.99"
+                    data-image="https://images.unsplash.com/photo-1541529086526-db283c563270?w=200&q=80">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <!-- Mains -->
+              <div class="order-menu-item" data-category="mains">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&q=80" alt="Classic Burger" class="order-menu-item-image">
+                <div class="order-menu-item-info">
+                  <div class="order-menu-item-header">
+                    <h3 class="order-menu-item-name">Classic Burger & Fries</h3>
+                    <span class="order-menu-item-price">$14.99</span>
+                  </div>
+                  <p class="order-menu-item-description">Juicy beef patty with all the fixings and crispy fries.</p>
+                  <button class="btn btn-primary btn-sm add-to-cart"
+                    data-id="burger"
+                    data-name="Classic Burger & Fries"
+                    data-price="14.99"
+                    data-image="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&q=80">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <div class="order-menu-item" data-category="mains">
+                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200&q=80" alt="Grilled Salmon" class="order-menu-item-image">
+                <div class="order-menu-item-info">
+                  <div class="order-menu-item-header">
+                    <h3 class="order-menu-item-name">Grilled Salmon</h3>
+                    <span class="order-menu-item-price">$22.99</span>
+                  </div>
+                  <p class="order-menu-item-description">Fresh salmon with seasonal vegetables and lemon butter.</p>
+                  <button class="btn btn-primary btn-sm add-to-cart"
+                    data-id="salmon"
+                    data-name="Grilled Salmon"
+                    data-price="22.99"
+                    data-image="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200&q=80">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <div class="order-menu-item" data-category="mains">
+                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&q=80" alt="Pasta Primavera" class="order-menu-item-image">
+                <div class="order-menu-item-info">
+                  <div class="order-menu-item-header">
+                    <h3 class="order-menu-item-name">Pasta Primavera</h3>
+                    <span class="order-menu-item-price">$16.99</span>
+                  </div>
+                  <p class="order-menu-item-description">Fresh pasta with seasonal vegetables in garlic olive oil.</p>
+                  <button class="btn btn-primary btn-sm add-to-cart"
+                    data-id="pasta"
+                    data-name="Pasta Primavera"
+                    data-price="16.99"
+                    data-image="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&q=80">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <div class="order-menu-item" data-category="mains">
+                <img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=200&q=80" alt="Chicken Parmesan" class="order-menu-item-image">
+                <div class="order-menu-item-info">
+                  <div class="order-menu-item-header">
+                    <h3 class="order-menu-item-name">Chicken Parmesan</h3>
+                    <span class="order-menu-item-price">$18.99</span>
+                  </div>
+                  <p class="order-menu-item-description">Breaded chicken with marinara and mozzarella, served with spaghetti.</p>
+                  <button class="btn btn-primary btn-sm add-to-cart"
+                    data-id="chicken-parm"
+                    data-name="Chicken Parmesan"
+                    data-price="18.99"
+                    data-image="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=200&q=80">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <!-- Desserts -->
+              <div class="order-menu-item" data-category="desserts">
+                <img src="https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=200&q=80" alt="Cheesecake" class="order-menu-item-image">
+                <div class="order-menu-item-info">
+                  <div class="order-menu-item-header">
+                    <h3 class="order-menu-item-name">New York Cheesecake</h3>
+                    <span class="order-menu-item-price">$7.99</span>
+                  </div>
+                  <p class="order-menu-item-description">Classic creamy cheesecake with graham cracker crust.</p>
+                  <button class="btn btn-primary btn-sm add-to-cart"
+                    data-id="cheesecake"
+                    data-name="New York Cheesecake"
+                    data-price="7.99"
+                    data-image="https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=200&q=80">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <div class="order-menu-item" data-category="desserts">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=200&q=80" alt="Chocolate Lava Cake" class="order-menu-item-image">
+                <div class="order-menu-item-info">
+                  <div class="order-menu-item-header">
+                    <h3 class="order-menu-item-name">Chocolate Lava Cake</h3>
+                    <span class="order-menu-item-price">$8.99</span>
+                  </div>
+                  <p class="order-menu-item-description">Warm chocolate cake with molten center and vanilla ice cream.</p>
+                  <button class="btn btn-primary btn-sm add-to-cart"
+                    data-id="lava-cake"
+                    data-name="Chocolate Lava Cake"
+                    data-price="8.99"
+                    data-image="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=200&q=80">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <!-- Beverages -->
+              <div class="order-menu-item" data-category="beverages">
+                <div class="order-menu-item-info" style="margin-left: 0;">
+                  <div class="order-menu-item-header">
+                    <h3 class="order-menu-item-name">Soft Drinks</h3>
+                    <span class="order-menu-item-price">$2.99</span>
+                  </div>
+                  <p class="order-menu-item-description">Coca-Cola, Sprite, Dr. Pepper, Root Beer</p>
+                  <button class="btn btn-primary btn-sm add-to-cart"
+                    data-id="soft-drink"
+                    data-name="Soft Drink"
+                    data-price="2.99">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <div class="order-menu-item" data-category="beverages">
+                <div class="order-menu-item-info" style="margin-left: 0;">
+                  <div class="order-menu-item-header">
+                    <h3 class="order-menu-item-name">Fresh Lemonade</h3>
+                    <span class="order-menu-item-price">$3.99</span>
+                  </div>
+                  <p class="order-menu-item-description">Freshly squeezed lemonade</p>
+                  <button class="btn btn-primary btn-sm add-to-cart"
+                    data-id="lemonade"
+                    data-name="Fresh Lemonade"
+                    data-price="3.99">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cart Section -->
+          <div class="order-cart">
+            <h2 style="margin-bottom: var(--spacing-lg);">Your Order</h2>
+
+            <div class="cart-items">
+              <p class="text-center" style="color: var(--text-secondary);">Your cart is empty</p>
+            </div>
+
+            <div class="cart-total">
+              <div class="cart-total-row">
+                <span>Subtotal:</span>
+                <span>$0.00</span>
+              </div>
+              <div class="cart-total-row">
+                <span>Tax (8%):</span>
+                <span>$0.00</span>
+              </div>
+              <div class="cart-total-row cart-total-final">
+                <span>Total:</span>
+                <span>$0.00</span>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-large checkout-button" style="width: 100%; margin-top: var(--spacing-md);" disabled>
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>The Cozy Kitchen</h3>
+          <p>Your neighborhood destination for delicious, home-style cooking in a warm and inviting atmosphere.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reservations.html">Reservations</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Main Boulevard Gulberg<br>Lahore, Punjab 54000<br>Pakistan</p>
+          <p>Phone: +92 300 1234567<br>Email: info@cozykitchen.com</p>
+          <p style="margin-top: var(--spacing-sm);"><strong>Hours:</strong><br>Mon-Thu: 11 AM - 9 PM<br>Fri-Sat: 11 AM - 10 PM<br>Sun: 10 AM - 8 PM</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Cozy Kitchen. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Menu category filtering
+    document.addEventListener('DOMContentLoaded', () => {
+      const categoryTabs = document.querySelectorAll('.menu-category-tab');
+      const menuItems = document.querySelectorAll('.order-menu-item');
+
+      categoryTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const category = tab.dataset.category;
+
+          // Update active tab
+          categoryTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          // Filter menu items
+          menuItems.forEach(item => {
+            const itemCategory = item.dataset.category;
+            if (category === 'all' || itemCategory === category) {
+              item.style.display = 'flex';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Checkout button handler
+      const checkoutButton = document.querySelector('.checkout-button');
+      if (checkoutButton) {
+        checkoutButton.addEventListener('click', () => {
+          if (cart && cart.items.length > 0) {
+            // Show checkout form or redirect
+            alert('Checkout functionality would be implemented here. In a real application, this would collect payment and customer information.');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
