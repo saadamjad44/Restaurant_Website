@@ -3,8 +3,8 @@
 A beautiful, fully responsive restaurant website featuring online ordering, table reservations, photo gallery, and event booking capabilities.
 
 # Live at:
-https://cozykitchenwebsite.netlify.app/
-https://saadamjad44.github.io/Restaurant_Website/
+Netlify:https://cozykitchenwebsite.netlify.app/
+- Github:https://saadamjad44.github.io/Restaurant_Website/
 
 ## Overview
 
